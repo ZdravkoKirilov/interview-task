@@ -1,5 +1,6 @@
 .article-details {
     position: fixed;
+    overflow: auto;
 }
 .article-details-img {
     max-height: 200px;

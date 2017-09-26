@@ -5,9 +5,9 @@ const defaultImage = require('../../assets/not-available.png');
 const loader = require('../../assets/loader.gif');
 
 
-export default function ArticleBody({title, text, imageUrl, commentsCount}) {
+export default function ArticleBody({ title, text, imageUrl, commentsCount }) {
 	return (
-		<div className="article-details">
+		<div className="article-details-body">
 			<h2>{title}</h2>
 			<ImageFallback
 				src={imageUrl}
@@ -20,3 +20,11 @@ export default function ArticleBody({title, text, imageUrl, commentsCount}) {
 		</div>
 	)
 }
+
+ArticleBody.propTypes = {
+	title: PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	commentsCount: PropTypes.number,
+	imageUrl: PropTypes.string,
+};

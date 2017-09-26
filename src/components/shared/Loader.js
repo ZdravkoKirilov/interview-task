@@ -3,7 +3,7 @@ const image = require('../../assets/loader.gif');
 
 export default function Loader({show}) {
     if (show) {
-        return <img alt="loader" role="loader" src={image}/>
+        return <img alt="loader" src={image}/>
     }
     return null;
 }
