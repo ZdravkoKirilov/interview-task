@@ -7,11 +7,11 @@ import ArticlesGroup from './ArticlesGroup';
 import Loader from '../shared/Loader';
 import './index.css';
 
-export default function ArticlesList({ items, isLoading, onLoadMore }) {
+export default function ArticlesList({ items, isLoading, onLoadMore, selectedArticleId }) {
     return (
         <Col xs={6}>
             <Panel>
-                <ArticlesGroup items={items} />
+                <ArticlesGroup items={items} selectedArticleId={selectedArticleId}/>
                 <Loader show={isLoading}/>
                 <LoadMoreButton onLoadMore={onLoadMore}>Load Next</LoadMoreButton>
             </Panel>
@@ -22,5 +22,6 @@ export default function ArticlesList({ items, isLoading, onLoadMore }) {
 ArticlesList.propTypes = {
     items: PropTypes.arrayOf(PropTypes.object).isRequired,
     isLoading: PropTypes.bool,
-    onLoadMore: PropTypes.func.isRequired
+    onLoadMore: PropTypes.func.isRequired,
+	selectedArticleId: PropTypes.number
 };

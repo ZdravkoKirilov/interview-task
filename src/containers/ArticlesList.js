@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { bindActionCreators, compose } from 'redux';
-import { withRouter } from 'react-router';
+import { bindActionCreators } from 'redux';
 import * as selectors from '../state/reducers/selectors';
 import * as actions from '../state/actions/actions';
 import ArticlesList from '../components/ArticlesList/index';
@@ -13,11 +12,17 @@ export class ArticlesListContainer extends Component {
         currentPage: PropTypes.number,
         articlesPerLoad: PropTypes.number,
         isLoading: PropTypes.bool
-    }
+    };
     render() {
-        const { handleLoadMoreClick } = this;
-        const { items, isLoading } = this.props;
-        return <ArticlesList items={items} isLoading={isLoading} onLoadMore={handleLoadMoreClick}/>
+        const { handleLoadMoreClick, } = this;
+        const { items, isLoading, match } = this.props;
+        const selectedArticleId = Number(match.params.id) || -1;
+        return <ArticlesList
+			items={items}
+			isLoading={isLoading}
+			onLoadMore={handleLoadMoreClick}
+			selectedArticleId={selectedArticleId}
+		/>
     }
     componentDidMount() {
         const { currentPage, articlesPerLoad } = this.props;
@@ -35,7 +40,7 @@ export class ArticlesListContainer extends Component {
             offset: (currentPage + 1) * articlesPerLoad,
             limit: articlesPerLoad
         });
-    }
+    };
 }
 
 function mapStateToProps(state, ownProps) {
@@ -52,8 +57,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withRouter
-)(ArticlesListContainer);
+const ConnectedArticlesList = connect(mapStateToProps, mapDispatchToProps)(ArticlesListContainer);
+export default ConnectedArticlesList;
 

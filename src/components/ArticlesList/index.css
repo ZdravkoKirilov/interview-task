@@ -5,3 +5,11 @@
 .media-image {
     max-width: 100px;
 }
+
+.article-list-item:hover {
+    cursor: pointer;
+}
+
+.article-list-item.isSelected {
+    border: 2px solid gray;
+}
