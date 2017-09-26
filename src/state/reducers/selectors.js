@@ -7,6 +7,23 @@ export const selectArticlesPerLoad = state => state.articlesList.pagination.load
 export const selectArticlesLoadingState = state => state.loaders.loadingArticles;
 
 export const selectCommentsAsTree = (state, articleId) => {
-    const comments = state.selectedArticle.comments.asTree[articleId] || {children: {}};
-    return Object.values(comments.children);
+    const comments = state.selectedArticle.comments.asTree[articleId] || { children: [] };
+    const mapped = mapChildren(comments, state.selectedArticle.comments.byId);
+    return mapped.children;
+}
+
+function mapChildren(container, byId) {
+
+    const mapped = container.children.map(elem => {
+        let comment = {
+            ...byId[elem.id],
+            children: elem.children || []
+        };
+        comment = mapChildren(comment);
+        return comment;
+    });
+    return {
+        ...container,
+        children: mapped
+    }
 }

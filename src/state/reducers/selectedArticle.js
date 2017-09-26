@@ -29,30 +29,21 @@ function itemsAllIds(state = [], { type, payload }) {
 function itemsAsTree(state = {}, { type, payload }) {
 	switch (type) {
 		case actionTypes.LOAD_COMMENTS_SUCCESS:
-			let { articleId, parentIds, currentId } = payload.metadata;
-			let newState;
-			parentIds = parentIds || [];
-			const newItems = payload.data.byId;
+			let { articleId, nestedPath } = payload.metadata;
+			let newState = {};
 
-			if (parentIds.length > 0) {
-				const parentIdsAsPath = parentIds.reduce(function (endResult, currentItem) {
-					endResult += `.children.${currentItem}`;
-					return endResult;
-				}, '');
-				newState = set(state[articleId]['children'], `${parentIdsAsPath}.${currentId}.children`, { ...newItems });
+			if (nestedPath) {
+				newState = set(state[articleId], nestedPath, payload.data.allIds);
 			} else {
 				newState = {
 					...state,
 					[articleId]: {
-						isArticle: true,
-						children: {
-							...state.children,
-							...newItems
-						}
+						children: [
+							...payload.data.asTree
+						]
 					}
 				}
 			}
-
 			return newState;
 		default:
 			return state;

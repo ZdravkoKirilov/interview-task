@@ -5,11 +5,11 @@ export function loadArticles(payload) {
     return async (dispatch) => {
         try {
             const results = await API.loadArticles(payload);
-            const normalized = results.data.reduce(function(endResult, currentItem) {
+            const normalized = results.data.reduce(function (endResult, currentItem) {
                 endResult['byId'][currentItem.id] = currentItem;
                 endResult['allIds'].push(currentItem.id);
                 return endResult;
-            }, {byId: {}, allIds: []});
+            }, { byId: {}, allIds: [] });
             dispatch(loadArticles_success(normalized));
         } catch (err) {
             dispatch(loadArticles_fail(err));
@@ -35,11 +35,12 @@ export function loadComments(payload) {
     return async (dispatch) => {
         try {
             const results = await API.loadComments(payload);
-            const normalized = results.data.reduce(function(endResult, currentItem) {
-                endResult['byId'][currentItem.id] = currentItem;
-                endResult['allIds'].push(currentItem.id);
+            const normalized = results.data.reduce(function (endResult, currentItem) {
+                endResult.byId[currentItem.id] = currentItem;
+                endResult.allIds.push(currentItem.id);
+                endResult.asTree.push({ id: currentItem.id, children: [] })
                 return endResult;
-            }, {byId: {}, allIds: []});
+            }, { byId: {}, allIds: [], asTree: [] });
             dispatch(loadComments_success({
                 data: normalized,
                 metadata: payload

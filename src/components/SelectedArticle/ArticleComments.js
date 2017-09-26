@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Comment from './Comment';
+import CommentsContainer from './CommentsContainer';
 
 export default function ArticleComments({ comments, articleId }) {
     return (
-        <ListGroup className="article-detail-comments">
-            {comments.map(elem => <Comment key={elem.id} {...elem} />)}
-        </ListGroup>
+        <div className="article-detail-comments">
+            <CommentsContainer articleId={articleId} comments={comments}/>
+        </div>
     );
 }
 
