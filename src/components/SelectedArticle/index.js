@@ -11,7 +11,10 @@ export default function SelectedArticle(props) {
 		<Col xs={6}>
 			<div className="article-details">
 				<ArticleBody {...props} />
-				<ArticleComments articleId={props.id} comments={props.comments} />
+				<ArticleComments
+					articleId={props.id}
+					comments={props.comments}
+					onLoadReplies={props.onLoadReplies}/>
 			</div>
 		</Col>
 	)
@@ -23,5 +26,6 @@ SelectedArticle.propTypes = {
 	id: PropTypes.number.isRequired,
 	commentsCount: PropTypes.number,
 	imageUrl: PropTypes.string,
-	comments: PropTypes.arrayOf(PropTypes.object)
+	comments: PropTypes.arrayOf(PropTypes.object),
+	onLoadReplies: PropTypes.func.isRequired
 };

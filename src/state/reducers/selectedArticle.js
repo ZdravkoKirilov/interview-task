@@ -33,25 +33,23 @@ function itemsAsTree(state = {}, { type, payload }) {
 			let newState = {};
 
 			if (nestedPath) {
-				newState = set(state[articleId], nestedPath, payload.data.allIds);
+				const newTree = set(state[articleId], nestedPath, payload.data.allIds);
+				newState = {
+					...state,
+					[articleId]: newTree
+				};
+				debugger;
 			} else {
 				newState = {
 					...state,
 					[articleId]: {
-						children: [
+						children: {
 							...payload.data.asTree
-						]
+						}
 					}
-				}
+				};
 			}
 			return newState;
-		default:
-			return state;
-	}
-}
-
-function metadata(state = {}, { type, payload }) {
-	switch (type) {
 		default:
 			return state;
 	}
