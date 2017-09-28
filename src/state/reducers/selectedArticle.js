@@ -26,35 +26,21 @@ function itemsAllIds(state = [], { type, payload }) {
 	}
 }
 
-function itemsAsTree(state = {}, { type, payload }) {
+function itemsAsChildList(state = {}, { type, payload }) {
 	switch (type) {
 		case actionTypes.LOAD_COMMENTS_SUCCESS:
-			let { articleId, nestedPath } = payload.metadata;
-			let newState = {};
-
-			if (nestedPath) {
-				const newTree = set(state[articleId], nestedPath, payload.data.allIds);
-				newState = {
-					...state,
-					[articleId]: newTree
-				};
-				debugger;
-			} else {
-				newState = {
-					...state,
-					[articleId]: {
-						children: {
-							...payload.data.asTree
-						}
-					}
-				};
-			}
-			return newState;
+			let { id } = payload.metadata;
+			return {
+				...state,
+				[id]: [
+					...payload.data.allIds
+				]
+			};
 		default:
 			return state;
 	}
 }
 
 export default combineReducers({
-	comments: combineReducers({ byId: itemsById, allIds: itemsAllIds, asTree: itemsAsTree })
+	comments: combineReducers({ byId: itemsById, allIds: itemsAllIds, childList: itemsAsChildList })
 });

@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import API from '../../API/index';
-import { createNestedPath, normalizeArticles, normalizeComments } from "../reducers/utils";
+import { normalizeArticles, normalizeComments } from "../reducers/utils";
 
 export function loadArticles(payload) {
 	return async (dispatch) => {
@@ -33,13 +33,12 @@ export function loadComments(payload) {
 		try {
 			payload.metadata = payload.metadata || {};
 			const results = await API.loadComments(payload.query);
-			const normalized = normalizeComments(results.data, payload.query.articleId);
-			const nestedPath = createNestedPath(payload.query.articleId, payload.metadata.parentCommentIds);
+			const normalized = normalizeComments(results.data);
+
 			dispatch(loadComments_success({
 				data: normalized,
 				metadata: {
-					articleId: payload.query.articleId,
-					nestedPath
+					id: payload.query.articleId
 				}
 			}));
 		} catch (err) {
