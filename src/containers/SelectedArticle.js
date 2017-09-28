@@ -9,15 +9,22 @@ import * as selectors from '../state/reducers/selectors';
 export class SelectedArticlesContainer extends Component {
 	static propTypes = {
 		article: PropTypes.object,
-		comments: PropTypes.arrayOf(PropTypes.object)
+		comments: PropTypes.arrayOf(PropTypes.object),
+		repliesById: PropTypes.object,
+		repliesAsChildList: PropTypes.object
 	};
 
 	render() {
-		const { article, comments } = this.props;
-		const { handleRepliesLoading } = this;
-		console.log(comments);
+		const { article, comments, repliesById, repliesAsChildList } = this.props;
+		const { handleRepliesLoading, handleCommentSubmit } = this;
 		if (article) {
-			return (<SelectedArticle {...article} comments={comments || []} onLoadReplies={handleRepliesLoading} />)
+			return (<SelectedArticle
+				{...article}
+				comments={comments}
+				onCommentSubmit={handleCommentSubmit}
+				repliesById={repliesById}
+				repliesAsChildList={repliesAsChildList}
+				onLoadReplies={handleRepliesLoading} />)
 		} else {
 			return null;
 		}
@@ -36,9 +43,14 @@ export class SelectedArticlesContainer extends Component {
 			this.props.actions.loadComments({ query: { articleId: Number(match.params.id) } });
 		}
 	}
-
+	handleCommentSubmit = (text, relations) => {
+		this.props.actions.addComment({
+			...relations,
+			text
+		});
+	};
 	handleRepliesLoading = (payload) => {
-		this.props.actions.loadComments(payload);
+		this.props.actions.loadReplies(payload);
 	}
 }
 
@@ -48,7 +60,9 @@ function mapStateToProps(state, ownProps) {
 		comments: selectors.selectComments(
 			selectors.selectCommentsById(state),
 			selectors.selectCommentsAsChildList(state),
-			ownProps.match.params.id)
+			ownProps.match.params.id),
+		repliesById: selectors.selectRepliesById(state),
+		repliesAsChildList: selectors.selectRepliesAsChildList(state)
 	};
 }
 

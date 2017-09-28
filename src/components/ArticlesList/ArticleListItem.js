@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import MediaListItem from 'react-bootstrap/lib/MediaListItem';
-import MediaLeft from 'react-bootstrap/lib/MediaLeft';
-import MediaBody from 'react-bootstrap/lib/MediaBody';
-import MediaHeading from 'react-bootstrap/lib/MediaBody';
+import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import ImageFallback from 'react-image-fallback';
 import {Link} from 'react-router-dom';
 
@@ -14,9 +11,9 @@ const loader = require('../../assets/loader.gif');
 
 export default function ArticleListItem({commentsCount, title, imageUrl, id, text, isSelected}) {
 	return (
-		<MediaListItem className={classNames('article-list-item', {isSelected})}>
-			<Link to={`/articles/${id}`}>
-				<MediaLeft>
+		<ListGroupItem className={classNames('article-list-item', {isSelected})}>
+			<Link  className="link-wrapper" to={`/articles/${id}`}>
+				<div className="left-image">
 					<ImageFallback
 						src={imageUrl}
 						fallbackImage={defaultImage}
@@ -24,12 +21,14 @@ export default function ArticleListItem({commentsCount, title, imageUrl, id, tex
 						alt={title}
 						className="media-image"
 					/>
-				</MediaLeft>
-				<MediaBody>
-					<MediaHeading>{title}</MediaHeading>
-				</MediaBody>
+				</div>
+				<div className="list-item-body">
+					<h1 className="article-header">{title}</h1>
+					<p className="content-preview">{text.substring(0, 30) + '...'}</p>
+					<p className="comments-count">{commentsCount} comments</p>
+				</div>
 			</Link>
-		</MediaListItem>
+		</ListGroupItem>
 	)
 }
 

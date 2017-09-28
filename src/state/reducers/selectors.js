@@ -13,3 +13,11 @@ export const selectComments = (byId, comments, id) => {
     const mapped = comments[id] ? comments[id].map(childId => byId[childId]) : [];
     return mapped;
 };
+
+export const selectRepliesById = state => state.selectedArticle.replies.byId;
+export const selectRepliesAsChildList = state => state.selectedArticle.replies.childList;
+
+export const selectReplies = (byId, replies, id) => {
+	const mapped = replies[id] ? replies[id].map(childId => byId[childId]) : [];
+	return mapped;
+};

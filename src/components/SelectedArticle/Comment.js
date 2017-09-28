@@ -1,43 +1,46 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import ListGroupItem from 'react-bootstrap/lib/ListGroupItem';
 import CommentsContainer from './CommentsContainer';
+import TextBox from './TextBox';
 
-export default function Comment({text, author, id, repliesCount, articleId, parentCommentId, children, onLoadReplies}) {
-	parentCommentId = parentCommentId || [];
-	return (
-		<ListGroupItem className="article-comment"
-					   onClick={() => onLoadReplies(
-						   {
-							   query: {articleId, parentCommentId: id},
-							   metadata: {
-								   parentCommentIds: [...parentCommentId, id]
+export default class Comment extends Component{
+	static propTypes = {
+		text: PropTypes.string.isRequired,
+		author: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
+		onLoadReplies: PropTypes.func.isRequired,
+		repliesCount: PropTypes.number.isRequired,
+		replies: PropTypes.arrayOf(PropTypes.object),
+		repliesById: PropTypes.object,
+		repliesAsChildList: PropTypes.object
+	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			showReplies: false,
+			showTextBox: false
+		}
+	}
+	render() {
+		const {text, author, id, repliesCount, replies, repliesById, repliesAsChildList, onLoadReplies} = this.props;
+		return (
+			<ListGroupItem className="article-comment"
+						   onClick={() => onLoadReplies(
+							   {
+								   query: {parentCommentId: id}
 							   }
-						   }
-					   )}>
-			<p>Text: {text}</p>
-			<p>Author: {author}</p>
-			<CommentsContainer
-				articleId={articleId}
-				parentCommentId={[...parentCommentId, id]}
-				comments={[]}
-				onLoadReplies={onLoadReplies}
-			/>
-		</ListGroupItem>
-	)
+						   )}>
+				<p>Text: {text}</p>
+				<p>Author: {author}</p>
+				<CommentsContainer
+					onLoadReplies={onLoadReplies}
+					comments={replies}
+					repliesById={repliesById}
+					repliesAsChildList={repliesAsChildList}
+				/>
+			</ListGroupItem>
+		)
+	}
 }
-
-Comment.propTypes = {
-	text: PropTypes.string.isRequired,
-	author: PropTypes.string.isRequired,
-	id: PropTypes.number.isRequired,
-	parentCommentId: PropTypes.arrayOf(PropTypes.string),
-	articleId: PropTypes.number.isRequired,
-	onLoadReplies: PropTypes.func.isRequired,
-	repliesCount: PropTypes.number.isRequired,
-	children: PropTypes.arrayOf(PropTypes.object)
-};
-Comment.defaultProps = {
-	children: []
-};

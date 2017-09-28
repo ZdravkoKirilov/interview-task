@@ -9,7 +9,7 @@ const App = () => {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<div className="container">
+				<div className="container-fluid">
 					<Switch>
 						<Route path="/articles/:id" component={ContentWrapper} />
 						<Route exact path="/articles" component={ContentWrapper} />

@@ -16,7 +16,7 @@ export class ArticlesListContainer extends Component {
     render() {
         const { handleLoadMoreClick, } = this;
         const { items, isLoading, match } = this.props;
-        const selectedArticleId = Number(match.params.id) || -1;
+        const selectedArticleId = Number(match.params.id);
         return <ArticlesList
 			items={items}
 			isLoading={isLoading}
