@@ -63,6 +63,7 @@ export function addComment(payload) {
 		try {
 			const results = await API.addComment(payload);
 			dispatch(addComment_success(results.data));
+			dispatch(loadComments({articleId: payload.articleId}));
 		} catch (err) {
 			dispatch(addComment_fail(err));
 		}
