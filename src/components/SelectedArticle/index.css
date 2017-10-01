@@ -1,8 +1,32 @@
 .article-details {
-  overflow: auto; }
+  overflow: auto;
+  height: 100%; }
 
-.article-details-img {
+.article-details .article-details-img {
   max-height: 200px; }
 
-.article-comment:hover {
+.article-details .comment .content-body .header {
+  display: flex; }
+
+.article-details .comment .content-body .header .header-left {
+  margin-right: 5rem; }
+
+.article-details .comment .content-body .header .header-left .author {
+  margin-right: 1rem;
+  font-weight: bold; }
+
+.article-details .comment .content-body .header .header-right .toggle-replies {
+  margin-right: 3rem; }
+
+.article-details .comment .content-body .header .reply-control:hover {
   cursor: pointer; }
+
+.article-details .comment .content-body .content {
+  padding: 1rem 0; }
+
+.article-details .text-box {
+  width: 70%;
+  padding: 1rem 0; }
+
+.article-details .text-box textarea {
+  width: 100%; }

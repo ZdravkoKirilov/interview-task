@@ -5,8 +5,8 @@ import SelectedArticle from '../containers/SelectedArticle';
 export default function ContentWrapper(props) {
 	return (
 		<div>
-			<ArticlesList {...props}/>
-			<SelectedArticle {...props}/>
+			<ArticlesList {...props} />
+			<SelectedArticle {...props} />
 		</div>
 	)
 }

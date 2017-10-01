@@ -10,6 +10,7 @@ const defaultImage = require('../../assets/not-available.png');
 const loader = require('../../assets/loader.gif');
 
 export default function ArticleListItem({commentsCount, title, imageUrl, id, text, isSelected}) {
+
 	return (
 		<ListGroupItem className={classNames('article-list-item', {isSelected})}>
 			<Link  className="link-wrapper" to={`/articles/${id}`}>
@@ -24,7 +25,7 @@ export default function ArticleListItem({commentsCount, title, imageUrl, id, tex
 				</div>
 				<div className="list-item-body">
 					<h1 className="article-header">{title}</h1>
-					<p className="content-preview">{text.substring(0, 30) + '...'}</p>
+					<p className="content-preview">{text.length > 30 ? (text.substring(0, 30) + '...') : text}</p>
 					<p className="comments-count">{commentsCount} comments</p>
 				</div>
 			</Link>
@@ -39,9 +40,4 @@ ArticleListItem.propTypes = {
 	commentsCount: PropTypes.number,
 	imageUrl: PropTypes.string,
 	isSelected: PropTypes.bool
-};
-
-ArticleListItem.defaultProps = {
-	commentsCount: 0,
-	imageUrl: defaultImage
 };

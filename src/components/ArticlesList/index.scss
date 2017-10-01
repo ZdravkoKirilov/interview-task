@@ -1,72 +1,76 @@
-.load-more-button {
-  width: 100%;
-  text-align: center;
-}
-
-.article-list-item {
-  overflow: hidden;
-  max-height: 100px;
-  background: #fff;
-  transition: background-color .1s linear;
-
-  &:hover {
-    cursor: pointer;
+.articles-list {
+  height: 100%;
+  overflow: auto;
+  .load-more-button {
+    width: 100%;
+    text-align: center;
   }
-  &.isSelected {
-    background: rgba(0, 0, 0, .2)
-  }
-  .link-wrapper {
-    text-decoration: none;
-    display: flex;
+  
+  .article-list-item {
+    overflow: hidden;
+    max-height: 100px;
+    background: #fff;
+    transition: background-color .1s linear;
+  
     &:hover {
+      cursor: pointer;
+    }
+    &.isSelected {
+      background: rgba(0, 0, 0, .2)
+    }
+    .link-wrapper {
       text-decoration: none;
-    }
-    .left-image {
-      .media-image {
-        width: 80px;
+      display: flex;
+      &:hover {
+        text-decoration: none;
       }
-    }
-    .list-item-body {
-      padding: 0 .6rem;
-      .article-header {
-        font-size: 1.2em;
-        color: black;
-        margin: 0;
+      .left-image {
+        .media-image {
+          width: 80px;
+        }
       }
-      .content-preview {
-        color: black;
-        overflow: hidden;
-        &:hover {
-          text-decoration: none;
+      .list-item-body {
+        padding: 0 .6rem;
+        .article-header {
+          font-size: 1.2em;
+          color: black;
+          margin: 0;
+        }
+        .content-preview {
+          color: black;
+          overflow: hidden;
+          &:hover {
+            text-decoration: none;
+          }
         }
       }
     }
   }
-}
-
-.fade-enter {
-  opacity: 0;
-}
-
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: all 300ms ease-in-out;
-}
-
-.fade-leave {
-  opacity: 1;
-}
-
-.fade-leave.fade-leave-active {
-  opacity: 0;
-  transition: all 300ms ease-in-out;
-}
-
-.fade-appear {
-  opacity: 0;
-}
-
-.fade-appear.fade-appear-active {
-  opacity: 1;
-  transition: all 400ms ease-in-out;
+  
+  .fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter.fade-enter-active {
+    opacity: 1;
+    transition: all 300ms ease-in-out;
+  }
+  
+  .fade-leave {
+    opacity: 1;
+  }
+  
+  .fade-leave.fade-leave-active {
+    opacity: 0;
+    transition: all 300ms ease-in-out;
+  }
+  
+  .fade-appear {
+    opacity: 0;
+  }
+  
+  .fade-appear.fade-appear-active {
+    opacity: 1;
+    transition: all 400ms ease-in-out;
+  }
 }

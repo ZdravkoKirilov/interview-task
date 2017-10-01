@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ArticleListItem from './ArticleListItem';
 import ListGroup from 'react-bootstrap/lib/ListGroup';
-import Transition from 'react-addons-css-transition-group'
+import Transition from 'react-addons-css-transition-group';
 
 export default function ArticlesGroup({items, selectedArticleId}) {
 	const children =

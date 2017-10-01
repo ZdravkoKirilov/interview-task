@@ -22,13 +22,3 @@ const App = () => {
 };
 
 export default App;
-
-// Approach 1
-// comments are stored flat in redux state // loadComments populates it
-// store-connected HOCS for articleDetails component + commentComponent // they get subcomments in selectors by passing article/comment id
-
-// Approach 2
-// comments are stored flat in redux state // loadComments populates it
-// SelectedArticle passes subtrees to each direct child, and the child to the next child as props
-
-// TODO: adding a comment must update commentsCount / repliesCount

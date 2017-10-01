@@ -5,6 +5,7 @@ export const selectLoadedArticleById = (state, id) => state.articlesList.items.b
 export const selectCurrentPage = state => state.articlesList.pagination.current;
 export const selectArticlesPerLoad = state => state.articlesList.pagination.loadQuantity;
 export const selectArticlesLoadingState = state => state.loaders.loadingArticles;
+export const selectCommentsLoadingState = state => state.loaders.loadingArticleComments;
 
 export const selectCommentsById = state => state.selectedArticle.comments.byId;
 export const selectCommentsAsChildList = state => state.selectedArticle.comments.childList;
@@ -18,6 +19,6 @@ export const selectRepliesById = state => state.selectedArticle.replies.byId;
 export const selectRepliesAsChildList = state => state.selectedArticle.replies.childList;
 
 export const selectReplies = (byId, replies, id) => {
-	const mapped = replies[id] ? replies[id].map(childId => byId[childId]) : [];
+    const mapped = replies[id] ? replies[id].map(childId => byId[childId]) : [];
 	return mapped;
 };

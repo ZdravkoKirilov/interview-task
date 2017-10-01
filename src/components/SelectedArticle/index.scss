@@ -1,9 +1,41 @@
 .article-details {
   overflow: auto;
-}
-.article-details-img {
-  max-height: 200px;
-}
-.article-comment:hover {
-  cursor: pointer;
+  height: 100%;
+  .article-details-img {
+    max-height: 200px;
+  }
+  .comment {
+    .content-body {
+      .header {
+        display: flex;
+        .header-left {
+          margin-right: 5rem;
+          .author {
+            margin-right: 1rem;
+            font-weight: bold;
+          }
+        }
+        .header-right {
+          .toggle-replies {
+            margin-right: 3rem;
+          }
+        }
+          .reply-control {
+            &:hover {
+              cursor: pointer;
+            }
+          }
+      }
+      .content {
+        padding: 1rem 0;
+      }
+    }
+  }
+  .text-box {
+    width: 70%;
+    padding: 1rem 0;
+    textarea {
+      width: 100%;
+    }
+  }
 }

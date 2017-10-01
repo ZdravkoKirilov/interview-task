@@ -4,11 +4,10 @@ import ImageFallback from 'react-image-fallback';
 const defaultImage = require('../../assets/not-available.png');
 const loader = require('../../assets/loader.gif');
 
-
-export default function ArticleBody({ title, text, imageUrl, commentsCount }) {
+export default function ArticleBody({ title, text, imageUrl }) {
 	return (
 		<div className="article-details-body">
-			<h2>{title}</h2>
+			<h2 className="article-details-title">{title}</h2>
 			<ImageFallback
 				src={imageUrl}
 				fallbackImage={defaultImage}
@@ -16,7 +15,7 @@ export default function ArticleBody({ title, text, imageUrl, commentsCount }) {
 				alt={title}
 				className="article-details-img"
 			/>
-			<article>{text}</article>
+			<article className="article-details-content">{text}</article>
 		</div>
 	)
 }
@@ -24,7 +23,5 @@ export default function ArticleBody({ title, text, imageUrl, commentsCount }) {
 ArticleBody.propTypes = {
 	title: PropTypes.string.isRequired,
 	text: PropTypes.string.isRequired,
-	id: PropTypes.number.isRequired,
-	commentsCount: PropTypes.number,
 	imageUrl: PropTypes.string,
 };

@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import articlesListReducer from './aritlcesList';
+import articlesListReducer from './articlesList';
 import selectedArticleReducer from './selectedArticle';
 import loadersReducer from './loaders';
 

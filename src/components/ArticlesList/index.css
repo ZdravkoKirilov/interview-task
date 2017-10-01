@@ -1,61 +1,65 @@
-.load-more-button {
+.articles-list {
+  height: 100%;
+  overflow: auto; }
+
+.articles-list .load-more-button {
   width: 100%;
   text-align: center; }
 
-.article-list-item {
+.articles-list .article-list-item {
   overflow: hidden;
   max-height: 100px;
   background: #fff;
   transition: background-color .1s linear; }
 
-.article-list-item:hover {
+.articles-list .article-list-item:hover {
   cursor: pointer; }
 
-.article-list-item.isSelected {
+.articles-list .article-list-item.isSelected {
   background: rgba(0, 0, 0, 0.2); }
 
-.article-list-item .link-wrapper {
+.articles-list .article-list-item .link-wrapper {
   text-decoration: none;
   display: flex; }
 
-.article-list-item .link-wrapper:hover {
+.articles-list .article-list-item .link-wrapper:hover {
   text-decoration: none; }
 
-.article-list-item .link-wrapper .left-image .media-image {
+.articles-list .article-list-item .link-wrapper .left-image .media-image {
   width: 80px; }
 
-.article-list-item .link-wrapper .list-item-body {
+.articles-list .article-list-item .link-wrapper .list-item-body {
   padding: 0 .6rem; }
 
-.article-list-item .link-wrapper .list-item-body .article-header {
+.articles-list .article-list-item .link-wrapper .list-item-body .article-header {
   font-size: 1.2em;
   color: black;
   margin: 0; }
 
-.article-list-item .link-wrapper .list-item-body .content-preview {
+.articles-list .article-list-item .link-wrapper .list-item-body .content-preview {
   color: black;
   overflow: hidden; }
 
-.article-list-item .link-wrapper .list-item-body .content-preview:hover {
+.articles-list .article-list-item .link-wrapper .list-item-body .content-preview:hover {
   text-decoration: none; }
 
-.fade-enter {
+.articles-list .fade-enter {
   opacity: 0; }
 
-.fade-enter.fade-enter-active {
+.articles-list .fade-enter.fade-enter-active {
   opacity: 1;
   transition: all 300ms ease-in-out; }
 
-.fade-leave {
+.articles-list .fade-leave {
   opacity: 1; }
 
-.fade-leave.fade-leave-active {
+.articles-list .fade-leave.fade-leave-active {
   opacity: 0;
   transition: all 300ms ease-in-out; }
 
-.fade-appear {
+.articles-list .fade-appear {
   opacity: 0; }
 
-.fade-appear.fade-appear-active {
+.articles-list .fade-appear.fade-appear-active {
   opacity: 1;
   transition: all 400ms ease-in-out; }

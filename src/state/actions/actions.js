@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes';
 import API from '../../API/index';
-import {normalizeArticles, normalizeComments} from "../reducers/utils";
+import { normalizeArticles, normalizeComments } from "../reducers/utils";
 
 export function loadArticles(payload) {
 	return async (dispatch) => {
@@ -33,7 +33,6 @@ export function loadComments(payload) {
 		try {
 			const results = await API.loadComments(payload.query);
 			const normalized = normalizeComments(results.data);
-
 			dispatch(loadComments_success({
 				data: normalized,
 				metadata: { id: payload.query.articleId }
@@ -63,7 +62,6 @@ export function addComment(payload) {
 		try {
 			const results = await API.addComment(payload);
 			dispatch(addComment_success(results.data));
-			dispatch(loadComments({articleId: payload.articleId}));
 		} catch (err) {
 			dispatch(addComment_fail(err));
 		}
@@ -113,6 +111,31 @@ export function loadReplies_fail(payload) {
 	}
 }
 
+export function addReply(payload) {
+	return async (dispatch) => {
+		try {
+			const results = await API.addComment(payload);
+			dispatch(addReply_success(results.data));
+		} catch (err) {
+			dispatch(addReply_fail(err));
+		}
+	}
+}
+
+export function addReply_success(payload) {
+	return {
+		type: actionTypes.ADD_REPLY_SUCCESS,
+		payload
+	}
+}
+
+export function addReply_fail(payload) {
+	return {
+		type: actionTypes.ADD_REPLY_FAIL,
+		payload
+	}
+}
+
 export function changeCurrentPage(payload) {
 	return {
 		type: actionTypes.CHANGE_PAGINATION,
@@ -120,9 +143,15 @@ export function changeCurrentPage(payload) {
 	}
 }
 
-export function toggleArticlesLoader(payload) {
+export function showArticlesLoader(payload) {
 	return {
-		type: actionTypes.TOGGLE_ARTICLES_LOADER,
+		type: actionTypes.SHOW_ARTICLES_LOADER,
+		payload
+	}
+}
+export function showCommentsLoader(payload) {
+	return {
+		type: actionTypes.SHOW_COMMENTS_LOADER,
 		payload
 	}
 }

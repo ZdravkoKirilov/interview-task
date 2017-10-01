@@ -46,6 +46,6 @@ const tables = {
   }
   
   exports.printTables = function() {
-    console.log(tables);
+    //console.log(tables);
   }
   

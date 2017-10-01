@@ -10,7 +10,7 @@ import './index.css';
 export default function ArticlesList({ items, isLoading, onLoadMore, selectedArticleId }) {
     return (
         <Col xs={5}>
-            <Panel>
+            <Panel className="articles-list">
                 <ArticlesGroup items={items} selectedArticleId={selectedArticleId}/>
                 <Loader show={isLoading}/>
                 <LoadMoreButton onLoadMore={onLoadMore}>Load Next</LoadMoreButton>

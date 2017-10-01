@@ -26,7 +26,7 @@ export class ArticlesListContainer extends Component {
     }
     componentDidMount() {
         const { currentPage, articlesPerLoad } = this.props;
-        this.props.actions.toggleArticlesLoader(true);
+        this.props.actions.showArticlesLoader();
         this.props.actions.loadArticles({
             offset: currentPage,
             limit: articlesPerLoad
@@ -34,7 +34,7 @@ export class ArticlesListContainer extends Component {
     }
     handleLoadMoreClick = () => {
         const { currentPage, articlesPerLoad } = this.props;
-        this.props.actions.toggleArticlesLoader(true);
+        this.props.actions.showArticlesLoader();
         this.props.actions.changeCurrentPage(currentPage + 1);
         this.props.actions.loadArticles({
             offset: (currentPage + 1) * articlesPerLoad,
